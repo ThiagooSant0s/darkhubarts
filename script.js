@@ -61,6 +61,15 @@ document.addEventListener("DOMContentLoaded", function () {
         createPaginationButtons();
     }
 
+    document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+    });
+    
+    document.querySelectorAll("img").forEach(img => {
+        img.addEventListener("dragstart", event => event.preventDefault());
+    });
+    
+
     // Inicializa a paginação para a galeria "Logos Gamer"
     paginateGallery("gallery-gamer", "pagination-gamer", 12);
 });
