@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Função de Paginação para a galeria
+    // Função de Paginação para uma galeria específica
     function paginateGallery(galleryId, paginationId, itemsPerPage = 12) {
         const gallery = document.getElementById(galleryId);
         const pagination = document.getElementById(paginationId);
@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Atualiza o estado do botão de paginação
             updatePagination(page);
+            
+            // Rola a página até o topo da galeria
+            gallery.scrollIntoView({ behavior: "smooth" });
         }
 
         // Função para criar os botões de paginação
@@ -61,15 +64,18 @@ document.addEventListener("DOMContentLoaded", function () {
         createPaginationButtons();
     }
 
+    // Bloqueio do clique com o botão direito
     document.addEventListener("contextmenu", function (e) {
         e.preventDefault();
     });
     
+    // Impedir o arraste de todas as imagens
     document.querySelectorAll("img").forEach(img => {
         img.addEventListener("dragstart", event => event.preventDefault());
     });
     
-
-    // Inicializa a paginação para a galeria "Logos Gamer"
-    paginateGallery("gallery-gamer", "pagination-gamer", 12);
+    // Inicializa a paginação para cada galeria e contêiner de paginação específicos
+    paginateGallery("gallery-freefire", "pagination-freefire", 12); // Galeria de Logos para Free Fire
+    paginateGallery("gallery-caveiras", "pagination-caveiras", 12); // Galeria de Logos de Caveiras
+    paginateGallery("gallery-diversos", "pagination-diversos", 12); // Galeria de Logos Diversos
 });
